@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="bg-amber-500 h-screen">
+    kontl
     <slot/>
   </div>
 </template>
