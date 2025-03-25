@@ -1,9 +1,14 @@
 <template>
-  <Head title="Dashboard"/>
-  <div class="bg-zinc-700 h-screen text-white">
-      
-  </div>
+<div class="p-6 bg-white dark:bg-gray-800 text-black dark:text-white">
+  Konten ini berubah sesuai mode!
+</div>
+
 </template>
-<script lang="ts" setup>
+
+<script setup lang="ts">
 
 </script>
+
+<style scoped>
+
+</style>
