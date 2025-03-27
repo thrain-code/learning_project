@@ -1,5 +1,5 @@
 <template>
-  <div class="background-motive">
+  <div class="bg-gray-200 h-screen">
 kontol
   </div>
 </template>
