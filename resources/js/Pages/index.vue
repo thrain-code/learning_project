@@ -1,7 +1,6 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
     <div class="w-full max-w-md bg-gray-800 rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
-      <!-- Tabs Navigation -->
       <div class="flex gap-2 mb-8 bg-gray-700 p-1 rounded-xl">
         <button 
           v-for="tab in tabs"
@@ -18,7 +17,6 @@
         </button>
       </div>
 
-      <!-- Form Container -->
       <form @submit.prevent="submitForm" class="space-y-6">
         <!-- Dynamic Form Fields -->
         <div v-for="field in activeFields" :key="field.model">
@@ -35,14 +33,12 @@
           />
         </div>
 
-        <!-- Additional Links untuk Login -->
         <div v-if="activeTab === 'login'" class="flex items-center justify-between">
           <a href="#" class="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">
             Lupa Password?
           </a>
         </div>
 
-        <!-- Submit Button -->
         <button 
           type="submit" 
           class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
@@ -51,7 +47,6 @@
         </button>
       </form>
 
-      <!-- Error Messages -->
       <div 
         v-if="errors.length"
         class="mt-6 p-4 bg-red-900/30 border border-red-800/50 text-red-300 rounded-lg backdrop-blur-sm"
@@ -63,7 +58,6 @@
         </ul>
       </div>
 
-      <!-- Footer Links -->
       <div class="mt-8 text-center text-sm text-gray-400">
         Dengan melanjutkan, Anda setuju dengan
         <a href="#" class="text-emerald-400 hover:text-emerald-300 transition-colors">Ketentuan Layanan</a> dan
@@ -78,7 +72,6 @@ import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import Empty from '../Layouts/empty.vue';
 
-// Nonaktifkan layout sepenuhnya
 defineOptions({ layout: Empty });
 
 type TabType = 'login' | 'register';
@@ -93,7 +86,6 @@ type FormField = {
 const activeTab = ref<TabType>('login');
 const errors = ref<string[]>([]);
 
-// Konfigurasi form menggunakan array
 const tabs = [
   { id: 'login' as TabType, label: 'Masuk' },
   { id: 'register' as TabType, label: 'Daftar' }
