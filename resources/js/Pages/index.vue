@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
-    <div class="w-full max-w-md bg-gray-800 rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
-      <div class="flex gap-2 mb-8 bg-gray-700 p-1 rounded-xl">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-zinc-900 rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
+      <div class="flex gap-2 mb-8 bg-zinc-700 p-1 rounded-xl">
         <button 
           v-for="tab in tabs"
           :key="tab.id"
@@ -10,7 +10,7 @@
             'flex-1 py-3 rounded-lg font-semibold transition-all duration-300',
             activeTab === tab.id 
               ? 'bg-emerald-600 text-white shadow-md' 
-              : 'bg-transparent text-gray-300 hover:bg-gray-600'
+              : 'bg-transparent text-zinc-300 hover:bg-zinc-600'
           ]"
         >
           {{ tab.label }}
@@ -20,14 +20,14 @@
       <form @submit.prevent="submitForm" class="space-y-6">
         <!-- Dynamic Form Fields -->
         <div v-for="field in activeFields" :key="field.model">
-          <label class="block text-sm font-medium text-gray-300 mb-2">
+          <label class="block text-sm font-medium text-zinc-300 mb-2">
             {{ field.label }}
             <span v-if="field.required" class="text-red-500">*</span>
           </label>
           <input
             :type="field.type"
             :required="field.required"
-            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-100 placeholder-gray-400 transition-all"
+            class="w-full px-4 py-3 bg-zinc-700 border border-zinc-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-zinc-100 placeholder-zinc-400 transition-all"
             :placeholder="field.placeholder"
             v-model="formData[field.model]"
           />
@@ -58,7 +58,7 @@
         </ul>
       </div>
 
-      <div class="mt-8 text-center text-sm text-gray-400">
+      <div class="mt-8 text-center text-sm text-zinc-400">
         Dengan melanjutkan, Anda setuju dengan
         <a href="#" class="text-emerald-400 hover:text-emerald-300 transition-colors">Ketentuan Layanan</a> dan
         <a href="#" class="text-emerald-400 hover:text-emerald-300 transition-colors">Kebijakan Privasi</a>
