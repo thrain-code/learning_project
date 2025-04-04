@@ -10,5 +10,5 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     sleep(1);
-    return Inertia::render('Dashboard');
+    return Inertia::render('auth/Dashboard');
 });
