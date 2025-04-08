@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <!-- isi halaman dashboard -->
-     tai
+     <div>konytol</div>
   </div>
 </template>
 
