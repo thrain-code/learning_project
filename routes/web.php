@@ -12,3 +12,8 @@ Route::get('/home', function () {
     sleep(1);
     return Inertia::render('auth/Dashboard');
 });
+
+Route::get('/service', function () {
+    sleep(1);
+    return Inertia::render('service/index');
+});
