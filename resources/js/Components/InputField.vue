@@ -1,4 +1,3 @@
-<!-- resources/js/Components/Forms/InputField.vue -->
 <script setup lang="ts">
 import type { InputFieldProps } from '../types/form';
 import { computed } from 'vue';
