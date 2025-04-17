@@ -1,6 +1,5 @@
 <template>
     <div class="min-h-screen flex">
-        <!-- Banner Section -->
         <div class="flex-1 bg-gradient-to-br from-emerald-900/80 to-zinc-900 relative hidden lg:block">
             <div
                 class="absolute inset-0 bg-[url('https://source.unsplash.com/random/1920x1080/?finance,technology')] bg-cover bg-center mix-blend-overlay opacity-20">
@@ -25,7 +24,6 @@
             </div>
         </div>
 
-        <!-- Login Form Section -->
         <div class="flex-1 flex items-center justify-center p-8 bg-zinc-900">
             <div class="w-full max-w-md">
                 <div class="text-center mb-10">
@@ -103,7 +101,7 @@ const rememberMe = ref(false);
 
 const formConfig: LoginField[] = [
     {
-        label: "Nomor Rekening",
+        label: "Account Number",
         type: "text",
         model: "account_number",
         required: true,
@@ -127,14 +125,13 @@ const formConfig: LoginField[] = [
         autocomplete: "current-password",
     },
 ];
-// Update formData dengan account_number
+
 const formData = ref({
     account_number: "",
     username: "",
     password: "",
 });
 
-// Load saved username
 onMounted(() => {
     const savedUsername = localStorage.getItem("rememberedUsername");
     if (savedUsername) {
