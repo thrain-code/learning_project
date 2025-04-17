@@ -17,3 +17,6 @@ Route::get('/service', function () {
     sleep(1);
     return Inertia::render('service/index');
 });
+
+
+Route::resource('accounts', App\Http\Controllers\AccountController::class)->only('index', 'store');

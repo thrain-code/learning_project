@@ -1,0 +1,19 @@
+models:
+  Account:
+    username: string:100
+    password: string
+    account_number: string:20, unique
+    balance: decimal:15,2 default:0
+    timestamps: true
+
+controllers:
+  Account:
+    index:
+      query: all
+      render: account.index with:accounts
+
+    store:
+      validate: username, password, account_number
+      save: account
+      event: NewAccountRegistered
+      redirect: account.index
