@@ -87,14 +87,13 @@ import type { FormField } from '../types/form';
 import {
     LockClosedIcon,
     ShieldCheckIcon,
-    UserIcon,
     KeyIcon,
     CreditCardIcon
 } from "@heroicons/vue/24/outline";
 
 defineOptions({ layout: Empty });
 
-type LoginField = FormField<'username' | 'password' | 'account_number'>;
+type LoginField = FormField<'password' | 'account_number'>;
 
 const errors = ref<string[]>([]);
 const rememberMe = ref(false);
@@ -109,14 +108,6 @@ const formConfig: LoginField[] = [
         autocomplete: "cc-number",
     },
     {
-        label: "Username",
-        type: "text",
-        model: "username",
-        required: true,
-        icon: UserIcon,
-        autocomplete: "username",
-    },
-    {
         label: "Password",
         type: "password",
         model: "password",
@@ -128,23 +119,22 @@ const formConfig: LoginField[] = [
 
 const formData = ref({
     account_number: "",
-    username: "",
     password: "",
 });
 
 onMounted(() => {
-    const savedUsername = localStorage.getItem("rememberedUsername");
-    if (savedUsername) {
-        formData.value.username = savedUsername;
+    const savedAccountNumber = localStorage.getItem("rememberedAccountNumber");
+    if (savedAccountNumber) {
+        formData.value.account_number = savedAccountNumber;
         rememberMe.value = true;
     }
 });
 
 const submitForm = () => {
     if (rememberMe.value) {
-        localStorage.setItem("rememberedUsername", formData.value.username);
+        localStorage.setItem("rememberedAccountNumber", formData.value.account_number);
     } else {
-        localStorage.removeItem("rememberedUsername");
+        localStorage.removeItem("rememberedAccountNumber");
     }
 
     router.post(
@@ -161,7 +151,6 @@ const submitForm = () => {
             onSuccess: () => {
                 formData.value = { 
                     account_number: "", 
-                    username: "", 
                     password: "" 
                 };
             },
