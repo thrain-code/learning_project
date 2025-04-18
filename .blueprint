@@ -1,12 +1,2 @@
-created:
-    - app/Http/Controllers/AccountController.php
-    - database/factories/AccountFactory.php
-    - database/migrations/2025_04_17_154649_create_accounts_table.php
-    - app/Models/Account.php
-    - tests/Feature/Http/Controllers/AccountControllerTest.php
-    - app/Http/Requests/AccountStoreRequest.php
-    - resources/views/account/index.blade.php
-updated:
-    - routes/web.php
 models:
-    Account: { username: 'string:100', password: string, account_number: 'string:20, unique', balance: 'decimal:15,2 default:0', timestamps: timestamps }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }

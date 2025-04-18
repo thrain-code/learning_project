@@ -10,6 +10,7 @@ export type InputType =
   | 'date'
   | 'url'
   | 'search'
+  | 'file'
   | 'textarea';
 
 export interface FormField<T extends string = string> {
