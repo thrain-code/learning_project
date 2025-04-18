@@ -1,10 +1,14 @@
 <template>
     <div class="min-h-screen flex">
-        <div class="flex-1 bg-gradient-to-br from-emerald-900/80 to-zinc-900 relative hidden lg:block">
+        <div
+            class="flex-1 bg-gradient-to-br from-emerald-900/80 to-zinc-900 relative hidden lg:block"
+        >
             <div
-                class="absolute inset-0 bg-[url('https://source.unsplash.com/random/1920x1080/?finance,technology')] bg-cover bg-center mix-blend-overlay opacity-20">
-            </div>
-            <div class="relative h-full p-12 flex flex-col justify-between text-white">
+                class="absolute inset-0 bg-[url('https://source.unsplash.com/random/1920x1080/?finance,technology')] bg-cover bg-center mix-blend-overlay opacity-20"
+            ></div>
+            <div
+                class="relative h-full p-12 flex flex-col justify-between text-white"
+            >
                 <div class="text-4xl font-bold tracking-tight">
                     <span class="text-emerald-400">Bank</span> Digital
                 </div>
@@ -28,7 +32,9 @@
             <div class="w-full max-w-md">
                 <div class="text-center mb-10">
                     <div class="mb-6 flex justify-center">
-                        <div class="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center">
+                        <div
+                            class="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center"
+                        >
                             <LockClosedIcon class="w-8 h-8 text-white" />
                         </div>
                     </div>
@@ -41,26 +47,55 @@
                 </div>
 
                 <form @submit.prevent="submitForm" class="space-y-6">
-                    <InputField v-for="field in formConfig" :key="field.model" v-model="formData[field.model]"
-                        :label="field.label" :type="field.type" :required="field.required" :icon="field.icon"
-                        :autocomplete="field.autocomplete" :error="errors.length > 0" />
+                    <InputField
+                        v-for="field in formConfig"
+                        :key="field.model"
+                        v-model="formData[field.model]"
+                        :label="field.label"
+                        :type="field.type"
+                        :required="field.required"
+                        :icon="field.icon"
+                        :autocomplete="field.autocomplete"
+                        :placeholder="field.placeholder"
+                        :error="
+                            errors.some((e) =>
+                                e.toLowerCase().includes(field.errorKey)
+                            )
+                        "
+                    />
 
                     <div class="flex items-center">
-                        <input id="remember-me" type="checkbox" v-model="rememberMe"
-                            class="h-4 w-4 text-emerald-500 border-zinc-700 rounded bg-zinc-800 focus:ring-emerald-500" />
-                        <label for="remember-me" class="ml-2 text-sm text-zinc-400">Ingat Saya</label>
+                        <input
+                            id="remember-me"
+                            type="checkbox"
+                            v-model="rememberMe"
+                            class="h-4 w-4 text-emerald-500 border-zinc-700 rounded bg-zinc-800 focus:ring-emerald-500"
+                        />
+                        <label
+                            for="remember-me"
+                            class="ml-2 text-sm text-zinc-400"
+                            >Ingat Saya</label
+                        >
                     </div>
 
-                    <button type="submit"
-                        class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-emerald-900/20">
+                    <button
+                        type="submit"
+                        class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-emerald-900/20"
+                    >
                         Masuk Sekarang
                     </button>
                 </form>
 
-                <div v-if="errors.length"
-                    class="mt-6 p-4 bg-red-900/30 border-2 border-red-800/50 text-red-300 rounded-xl backdrop-blur-sm animate-fade-in">
+                <div
+                    v-if="errors.length"
+                    class="mt-6 p-4 bg-red-900/30 border-2 border-red-800/50 text-red-300 rounded-xl backdrop-blur-sm animate-fade-in"
+                >
                     <ul class="list-disc pl-5 space-y-2">
-                        <li v-for="error in errors" :key="error" class="text-sm">
+                        <li
+                            v-for="error in errors"
+                            :key="error"
+                            class="text-sm"
+                        >
                             {{ error }}
                         </li>
                     </ul>
@@ -68,9 +103,11 @@
 
                 <div class="mt-8 text-center text-sm text-zinc-400">
                     Belum punya akun?
-                    <Link href="/service"
-                        class="text-emerald-400 hover:text-emerald-300 transition-colors font-semibold">
-                    Hubungi Customer Service
+                    <Link
+                        href="/service"
+                        class="text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
+                    >
+                        Hubungi Customer Service
                     </Link>
                 </div>
             </div>
@@ -88,24 +125,28 @@ import {
     LockClosedIcon,
     ShieldCheckIcon,
     KeyIcon,
-    CreditCardIcon
+    CreditCardIcon,
 } from "@heroicons/vue/24/outline";
 
 defineOptions({ layout: Empty });
 
-type LoginField = FormField<'password' | 'account_number'>;
+interface LoginField extends FormField<'password' | 'account_number'> {
+    errorKey: string;
+}
 
 const errors = ref<string[]>([]);
 const rememberMe = ref(false);
 
 const formConfig: LoginField[] = [
     {
-        label: "Account Number",
+        label: "Nomor Rekening",
         type: "text",
         model: "account_number",
         required: true,
         icon: CreditCardIcon,
         autocomplete: "cc-number",
+        placeholder: "Masukkan nomor rekening Anda", 
+        errorKey: "account",
     },
     {
         label: "Password",
@@ -114,6 +155,8 @@ const formConfig: LoginField[] = [
         required: true,
         icon: KeyIcon,
         autocomplete: "current-password",
+        placeholder: "Masukkan password Anda",
+        errorKey: "password",
     },
 ];
 
@@ -132,7 +175,10 @@ onMounted(() => {
 
 const submitForm = () => {
     if (rememberMe.value) {
-        localStorage.setItem("rememberedAccountNumber", formData.value.account_number);
+        localStorage.setItem(
+            "rememberedAccountNumber",
+            formData.value.account_number
+        );
     } else {
         localStorage.removeItem("rememberedAccountNumber");
     }
@@ -149,9 +195,9 @@ const submitForm = () => {
                 setTimeout(() => (errors.value = []), 5000);
             },
             onSuccess: () => {
-                formData.value = { 
-                    account_number: "", 
-                    password: "" 
+                formData.value = {
+                    account_number: "",
+                    password: "",
                 };
             },
         }

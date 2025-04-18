@@ -1,6 +1,17 @@
-// resources/js/types/form.ts
-import type { Component } from "vue";
+import { Component } from "vue";
 
+export interface FormField<T extends string = string> {
+  label: string;          // Tambahkan
+  type: InputType;        // Tambahkan
+  model: T;               // Sudah ada
+  required?: boolean;     // Tambahkan
+  icon: Component;        // Tambahkan
+  autocomplete?: string;  // Tambahkan
+  placeholder?: string;   // Sudah ada
+  error?: string;         // Sudah ada
+}
+
+// resources/js/types/form.ts
 export type InputType = 
   | 'text'
   | 'password'
@@ -16,18 +27,7 @@ export type InputType =
   | 'file'
   | 'textarea';
 
-export interface FormField<T extends string = string> {
-  label: string;
-  type: InputType;
-  model: T;
-  required?: boolean;
-  icon: Component;
-  autocomplete?: string;
-  placeholder?: string;
-  error?: string;
-}
-
-export interface InputFieldProps<T = string> {
+export interface InputFieldProps<T = any> {
   label: string;
   type?: InputType;
   modelValue: T;

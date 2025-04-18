@@ -4,13 +4,31 @@ import { computed } from 'vue';
 
 const props = defineProps<InputFieldProps>();
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
+  (e: 'update:modelValue', value: any): void
 }>();
 
 const value = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value)
+  get: () => {
+    if (props.type === 'number' || props.type === 'range') {
+      return String(props.modelValue);
+    }
+    return props.modelValue;
+  },
+  set: (value) => {
+    let processedValue: any = value;
+    
+    if (props.type === 'number' || props.type === 'range') {
+      processedValue = Number(value);
+    }
+    
+    emit('update:modelValue', processedValue);
+  }
 });
+
+const handleFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  emit('update:modelValue', target.files);
+};
 </script>
 
 <template>
@@ -22,9 +40,15 @@ const value = computed({
     <div class="relative">
       <component
         :is="icon"
-        class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 transition-colors duration-200 peer-focus:text-emerald-500"
+        class="w-5 h-5 absolute left-4 transition-colors duration-200 peer-focus:text-emerald-500"
+        :class="{
+          'top-1/2 -translate-y-1/2': type !== 'textarea',
+          'top-3': type === 'textarea'
+        }"
       />
+      
       <input
+        v-if="type !== 'textarea' && type !== 'file'"
         :type="type"
         :required="required"
         v-model="value"
@@ -33,6 +57,25 @@ const value = computed({
         class="bg-zinc-800/50 px-4 py-3 pl-11 pr-4 outline-none w-full text-white rounded-lg border-2 border-solid transition-all duration-200 focus:border-emerald-500 hover:border-zinc-600 border-zinc-700 focus:ring-0 placeholder-zinc-500 autocomplete-height-fix"
         :class="{ 'border-red-500': error }"
       />
+      
+      <input
+        v-else-if="type === 'file'"
+        type="file"
+        :required="required"
+        @change="handleFileChange"
+        class="bg-zinc-800/50 px-4 py-3 pl-11 pr-4 outline-none w-full text-white rounded-lg border-2 border-solid transition-all duration-200 focus:border-emerald-500 hover:border-zinc-600 border-zinc-700 focus:ring-0 placeholder-zinc-500 autocomplete-height-fix"
+        :class="{ 'border-red-500': error }"
+      />
+      
+      <textarea
+        v-else
+        :required="required"
+        v-model="value"
+        :autocomplete="autocomplete"
+        :placeholder="placeholder"
+        class="bg-zinc-800/50 px-4 py-3 pl-11 pr-4 outline-none w-full text-white rounded-lg border-2 border-solid transition-all duration-200 focus:border-emerald-500 hover:border-zinc-600 border-zinc-700 focus:ring-0 placeholder-zinc-500 autocomplete-height-fix"
+        :class="{ 'border-red-500': error }"
+      ></textarea>
     </div>
   </div>
 </template>
