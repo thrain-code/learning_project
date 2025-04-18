@@ -10,6 +10,9 @@ export type InputType =
   | 'date'
   | 'url'
   | 'search'
+  | 'color'
+  | 'range'
+  | 'hidden'
   | 'file'
   | 'textarea';
 
