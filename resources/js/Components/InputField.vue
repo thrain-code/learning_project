@@ -27,7 +27,7 @@ const value = computed({
 
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  emit('update:modelValue', target.files);
+  emit('update:modelValue', target.files?.[0] || null);
 };
 </script>
 
@@ -40,6 +40,7 @@ const handleFileChange = (event: Event) => {
     <div class="relative">
       <component
         :is="icon"
+        v-if="icon"
         class="w-5 h-5 absolute left-4 transition-colors duration-200 peer-focus:text-emerald-500"
         :class="{
           'top-1/2 -translate-y-1/2': type !== 'textarea',
@@ -55,7 +56,10 @@ const handleFileChange = (event: Event) => {
         :autocomplete="autocomplete"
         :placeholder="placeholder"
         class="bg-zinc-800/50 px-4 py-3 pl-11 pr-4 outline-none w-full text-white rounded-lg border-2 border-solid transition-all duration-200 focus:border-emerald-500 hover:border-zinc-600 border-zinc-700 focus:ring-0 placeholder-zinc-500 autocomplete-height-fix"
-        :class="{ 'border-red-500': error }"
+        :class="{ 
+          'border-red-500': error,
+          'pl-4': !icon 
+        }"
       />
       
       <input
@@ -63,8 +67,12 @@ const handleFileChange = (event: Event) => {
         type="file"
         :required="required"
         @change="handleFileChange"
+        :accept="accept"
         class="bg-zinc-800/50 px-4 py-3 pl-11 pr-4 outline-none w-full text-white rounded-lg border-2 border-solid transition-all duration-200 focus:border-emerald-500 hover:border-zinc-600 border-zinc-700 focus:ring-0 placeholder-zinc-500 autocomplete-height-fix"
-        :class="{ 'border-red-500': error }"
+        :class="{ 
+          'border-red-500': error,
+          'pl-4': !icon 
+        }"
       />
       
       <textarea
@@ -74,7 +82,10 @@ const handleFileChange = (event: Event) => {
         :autocomplete="autocomplete"
         :placeholder="placeholder"
         class="bg-zinc-800/50 px-4 py-3 pl-11 pr-4 outline-none w-full text-white rounded-lg border-2 border-solid transition-all duration-200 focus:border-emerald-500 hover:border-zinc-600 border-zinc-700 focus:ring-0 placeholder-zinc-500 autocomplete-height-fix"
-        :class="{ 'border-red-500': error }"
+        :class="{ 
+          'border-red-500': error,
+          'pl-4': !icon 
+        }"
       ></textarea>
     </div>
   </div>
