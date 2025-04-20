@@ -1,8 +1,6 @@
 <template>
   <div class="flex min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-900/95 to-zinc-900">
-    <!-- Sidebar Navigation -->
     <div class="h-screen bg-gradient-to-b from-zinc-800 to-zinc-900 w-64 fixed flex flex-col border-r border-zinc-700/50 shadow-2xl">
-      <!-- User Profile Section -->
       <div class="p-6 border-b border-zinc-700/50 bg-zinc-800/30 backdrop-blur-sm">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg">
@@ -15,7 +13,6 @@
         </div>
       </div>
 
-      <!-- Navigation Menu -->
       <div class="p-6 flex-1">
         <nav class="space-y-2">
           <Link
@@ -48,7 +45,6 @@
         </nav>
       </div>
 
-      <!-- Security Section -->
       <div class="mt-auto p-4 border-t border-zinc-700/50 bg-zinc-800/40 backdrop-blur-sm">
         <div class="flex items-center gap-2 text-emerald-400/90 text-sm">
           <ShieldCheckIcon class="w-5 h-5 drop-shadow-sm" />
@@ -58,9 +54,7 @@
       </div>
     </div>
 
-    <!-- Main Content -->
     <div class="flex-1 ml-64 min-h-screen bg-zinc-900/95 backdrop-blur">
-      <!-- Header -->
       <header class="bg-zinc-800/60 shadow-sm p-6 border-b border-zinc-700/50 backdrop-blur">
         <div class="flex justify-between items-center">
           <div>
@@ -81,7 +75,6 @@
         </div>
       </header>
       
-      <!-- Page Content -->
       <div class="p-8 text-zinc-200/95">
         <slot />
       </div>

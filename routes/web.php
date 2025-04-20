@@ -13,7 +13,7 @@ Route::get('/home', function () {
     return Inertia::render('auth/Dashboard');
 });
 
-Route::get('/service', function () {
+Route::get('/login', function () {
     sleep(1);
-    return Inertia::render('service/index');
+    return Inertia::render('account/index');
 });

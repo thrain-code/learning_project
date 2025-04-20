@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { SelectProps, SelectOption } from '../types/form';
-import { ChevronDownIcon } from '@heroicons/vue/20/solid'; // Gunakan icon solid untuk konsistensi
+import { ChevronDownIcon } from '@heroicons/vue/20/solid'; 
 
 const props = defineProps<SelectProps>();
 const emit = defineEmits<{
