@@ -84,12 +84,12 @@
                     </form>
 
                     <div class="mt-8 text-center text-sm text-zinc-400">
-                        Butuh bantuan?
+                        Kembali ke halaman
                         <Link
                             href="/"
                             class="text-emerald-400 hover:text-emerald-300 transition-colors font-semibold ml-1"
-                        >
-                            Hubungi Support
+                            >
+                            Homepage
                         </Link>
                     </div>
                 </div>
