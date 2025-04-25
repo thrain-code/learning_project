@@ -102,7 +102,6 @@ interface NavItem {
   icon: any
   notification?: number
 }
-
 const navItems: NavItem[] = [
   {
     name: 'Accounts Overview',
