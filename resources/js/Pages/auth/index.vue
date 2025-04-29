@@ -46,6 +46,7 @@
                     <form @submit.prevent="submitLogin" class="space-y-6">
                         <InputField
                             variant="primary"
+                            theme="dark"
                             v-for="field in loginFields"
                             :key="field.model"
                             v-bind="field"
@@ -75,12 +76,12 @@
                             </a>
                         </div>
 
-                        <CustomButton
+                        <ButtonComp
                             variant="primary"
-                            custom-class="shadow-lg hover:shadow-xl"
+                            theme="light"
                         >
                             Ghost Button
-                        </CustomButton>
+                        </ButtonComp>
                     </form>
 
                     <div class="mt-8 text-center text-sm text-zinc-400">
@@ -119,7 +120,7 @@
 import { ref, onMounted } from "vue";
 import { Link, router } from "@inertiajs/vue3";
 import InputField from "../../Components/InputField.vue";
-import CustomButton from "../../Components/ButtonComp.vue";
+import ButtonComp from "../../Components/ButtonComp.vue";
 import {
     ShieldCheckIcon,
     EnvelopeIcon,

@@ -8,12 +8,7 @@ Route::get('/', function () {
     return Inertia::render('index');
 });
 
-Route::get('/home', function () {
-    sleep(1);
-    return Inertia::render('auth/Dashboard');
-});
-
 Route::get('/login', function () {
     sleep(1);
-    return Inertia::render('account/index');
+    return Inertia::render('auth/index');
 });
