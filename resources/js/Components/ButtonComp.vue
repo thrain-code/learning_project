@@ -5,7 +5,6 @@
     @click="$emit('click')"
   >
     <div class="flex items-center justify-center w-full gap-2 relative">
-      <!-- Loading spinner -->
       <div v-if="loading" class="absolute inset-0 flex items-center justify-center">
         <svg
           class="animate-spin h-5 w-5"
@@ -130,9 +129,7 @@ const roundedClass = computed(() => {
   }[props.rounded];
 });
 
-// Theme color mappings - only light and dark
 const themeColorMappings = computed(() => {
-  // Light theme - brighter, softer colors with lighter shadows
   const lightTheme = {
     primary: {
       base: 'bg-emerald-500 text-white',
@@ -185,7 +182,6 @@ const themeColorMappings = computed(() => {
     }
   };
 
-  // Dark theme - deeper, more saturated colors with stronger shadows
   const darkTheme = {
     primary: {
       base: 'bg-emerald-700 text-white',
