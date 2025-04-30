@@ -126,7 +126,6 @@ import {
     EnvelopeIcon,
     KeyIcon,
 } from "@heroicons/vue/24/outline";
-import { FormField } from "../../types/form";
 import Empty from "../../Layouts/empty.vue";
 
 defineOptions({ layout: Empty });
@@ -139,7 +138,7 @@ const loginData = ref({
     password: "",
 });
 
-const loginFields: FormField[] = [
+const loginFields = [
     {
         label: "Username",
         type: "text",
