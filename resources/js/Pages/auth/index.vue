@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-
         <div class="flex-1 flex items-center justify-center p-8 bg-zinc-900">
             <div class="w-full max-w-md">
                 <div class="px-4">
